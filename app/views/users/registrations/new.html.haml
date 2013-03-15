@@ -1,0 +1,12 @@
+%h2{:style => "line-height:20px;font-size:10pt;"} 
+  Sign up and share your places!
+  
+%div{:style => "margin:18px;"}
+  - if session['devise.omniauth_data'].present?
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      = devise_error_messages!
+      %div
+        = f.label :email, "Your email"
+        %br/
+        = f.email_field :email, :style => "border:solid 1px #CCC;width:278px;padding:4px;float:left;"
+        %div= f.submit "Complete sign up!", :style => "padding:3px;"

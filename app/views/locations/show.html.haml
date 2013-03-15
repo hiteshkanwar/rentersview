@@ -1,0 +1,12 @@
+#location_show
+  %article
+    %a{:href => "/locations/#{@location.id}/reviews"}
+      %img{:src=>"#{@location.location_photos[0].photo.url(:thumb)}"}
+    %h3
+      %a.adress{:href => "/locations/#{@location.id}/reviews"}
+        = @location.full_address  
+    %span.review-number #{@location.reviews.size} reviews
+    %div.buttons  
+      = link_to 'Add a Review', new_location_review_path(@location), :class =>"add-review-btn"
+      = link_to 'Add an Ad', new_location_ad_path(@location), :class =>"add-ad-btn"
+  %div.rev-shadow 

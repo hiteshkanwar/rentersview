@@ -1,0 +1,15 @@
+%li
+  %article.add
+    //%h3
+    //%a.adress{:href => "/locations/#{ad.location.id}/reviews"}
+    //= ad.location.address1  
+    %div.profile  
+      %img{:src => "#{ad.user.profile_image_url}"} 
+      %span.name
+        = ad.user.first_name.to_s + " " + ad.user.last_name.to_s
+      %p.contact-info
+        Contact info:
+        = ad.contact
+      %p.message
+        = ad.message
+     

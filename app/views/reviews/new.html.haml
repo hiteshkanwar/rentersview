@@ -1,0 +1,8 @@
+%h2 Add a review
+
+= form_for [@location, @review] do |f|
+  %div.centered
+    %div.centered{:style => "width:973px;"}
+      = f.text_area :message, :style => "border:solid 1px #ccc;width:620px;height:120px;"
+      %br
+      = f.submit 'Add review'

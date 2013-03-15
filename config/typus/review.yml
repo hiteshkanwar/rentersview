@@ -1,0 +1,8 @@
+# Use the README file as a reference to customize settings.
+
+Review:
+  fields:
+    default: message, location.address1, user.first_name
+    form: message, location_id, user_id
+  relationships: 
+  application: Application

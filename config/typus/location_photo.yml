@@ -1,0 +1,8 @@
+# Use the README file as a reference to customize settings.
+
+LocationPhoto:
+  fields:
+    default: location.address1, photo_file_name, photo_file_size
+    form: location_id, photo_file_name, photo_file_size
+  relationships: 
+  application: Application

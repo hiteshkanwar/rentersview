@@ -1,0 +1,8 @@
+# Use the README file as a reference to customize settings.
+
+User:
+  fields:
+    default: first_name, last_name, country, city, email
+    form: first_name, last_name, country, city, phone, email, encrypted_password, profile_image_url
+  relationships: authorizations, reviews, ads
+  application: Application

@@ -1,0 +1,3 @@
+- flash.each do |name, message|
+  - class_name = (name == 'error' ? 'alert-error' : 'alert-success')
+  %div{ class: [class_name, 'alert'], style: 'text-align:center;' }= message

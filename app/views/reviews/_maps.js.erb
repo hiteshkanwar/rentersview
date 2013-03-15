@@ -1,0 +1,18 @@
+<script type="text/javascript"> 
+
+  var latlng = new google.maps.LatLng(<%= @location.latitude %>, <%= @location.longitude %>);
+  var myOptions = {
+    zoom: 16,
+    center: latlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  
+  var map = new google.maps.Map(document.getElementById("reviewMap"), myOptions);
+  
+  var marker = new google.maps.Marker({
+    position: latlng,
+    map: map,
+    title: "<%= @location.address1 %>"
+  });
+
+</script>

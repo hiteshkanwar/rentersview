@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  facebookId: MyString
+  address1: MyString
+  address2: MyString
+  city: MyString
+  region: MyString
+  country: MyString
+  postalCode: MyString
+  longitude: MyString
+  latitude: MyString
+  reviewMessage: MyText
+
+two:
+  facebookId: MyString
+  address1: MyString
+  address2: MyString
+  city: MyString
+  region: MyString
+  country: MyString
+  postalCode: MyString
+  longitude: MyString
+  latitude: MyString
+  reviewMessage: MyText

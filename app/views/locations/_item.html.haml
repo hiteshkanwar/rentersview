@@ -1,0 +1,15 @@
+%li
+  %article
+    %a{:href => "/locations/#{location.id}/reviews"}
+      - if !location.location_photos.blank?
+        %img{:src=>"#{location.location_photos[0].photo.url(:thumb)}"}
+      - else
+        %img{:src => "http://maps.google.com/maps/api/staticmap?center=#{location.latitude},#{location.longitude}&markers=color:red|#{location.latitude},#{location.longitude}&zoom=12&size=90x78&sensor=false&key=AIzaSyDBErX3M80EQqJ0JSWjRdYINF6WuGXUQo0&maptype=roadmap", :width => "90", :height => "78"}
+    %h3
+      %a.adress{:href => "/locations/#{location.id}/reviews"}
+        = location.full_address  
+    %span.review-number #{location.reviews.size} reviews
+    %div.buttons  
+      = link_to 'Add a Review', new_location_review_path(location), :class =>"add-review-btn"
+      = link_to 'Add an Ad', new_location_ad_path(location), :class =>"add-ad-btn"
+  %div.rev-shadow 

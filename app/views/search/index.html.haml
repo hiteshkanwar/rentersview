@@ -1,0 +1,88 @@
+
+%div.search-bar
+  - if @results.blank?
+    = render 'not_results'
+    %br
+    %div#mapBox{:style => "width:600px;min-height:300px;margin-bottom:20px;"}
+      %ul.review-bloqs
+        %li
+          %article.mod-review{:style => "max-width:600px;overflow:hidden;"}
+            %div#reviewMap
+              %iframe{:frameborder => "0", :scrolling => "no", :marginheight => "0", :marginwidth => "0", :src => "http://maps.google.com.uy/maps?q=#{params[:query]}&hl=en&ie=UTF8&hq=&hnear=#{params[:query]}&t=m&z=15&output=embed", :width => "600", :height => "300"}
+              %iframe{:frameborder => "0", :scrolling => "no", :marginheight => "0", :marginwidth => "0", :src => "http://maps.google.com.uy/maps?q=#{params[:query]}&hl=en&ie=UTF8&hq=&hnear=#{params[:query]}&t=m&z=15&output=svembed&layer=c&panoid=0&cbp=0,,0,0", :width => "600", :height => "200"}
+          %div.rev-shadow-large
+  - else
+    %h2 Search results
+    %ul.search-results
+      = render partial: '/locations/item', collection: @results, as: :location
+  
+  = will_paginate @results
+  
+- if !@results.blank?
+  %div.right-bar
+    %section.add-sec
+      - if !@results[0].ads.blank?
+        %h2 Related Ads
+        %ul.add-list
+          - @results.take(8).each do |location|
+            - location.ads.take(1).each do |ad|
+              = render partial: '/locations/ad', object: ad, as: :ad
+        %div.rev-shadow
+- else
+  %div.right-bar
+    %section.add-sec
+      - if !@some_ads.blank?
+        %h2 Latest ads
+        %ul.add-list
+          - @some_ads.each do |ad|
+            = render partial: '/locations/ad', object: ad, as: :ad
+        %div.rev-shadow
+  %div.right-bar{:style => "max-width:480px;"}
+
+%section.tabs
+  %div.tabs-container
+    %ul.tabs-tabs
+      %li
+        %a{:href=>"#1"} Latest locations
+      %li
+        %a{:href=>"#2"} Most popular places
+        
+    %div.tabs-content{:name =>"#1"}
+      %ul
+        - @latests_locations3.each do |location|
+          - if !location.reviews[0].user.blank?
+            %li
+              %ul
+                %li.day{:style => "min-width:100px;max-width:100px;"}
+                  = time_ago_in_words(location.created_at)
+                %li.address{:style => "min-width:325px;max-width:325px;"}
+                  %a{:href => "/locations/#{location.id}/reviews"}
+                    = location.address1[0, 30] + ", " + location.city + ", " + location.country
+                %li.review-number
+                  %a{:href => "/locations/#{location.id}/reviews", :style => "color:#2A282D;"}
+                    #{location.reviews.size} review
+                %li.friends
+                  %img{:src => "#{location.reviews[0].user.profile_image_url}"}
+                  %span
+                    %a{:href => "/locations/#{location.id}/reviews", :style => "color:#2A282D;"}
+                      = location.reviews[0].message[0, 40] + ".."
+
+    %div.tabs-content{:name =>"#2"}
+      %ul
+        %li
+          %table
+            - @popular_locations2.each do |location|
+              - if !location.reviews[0].user.blank?
+                %li
+                  %ul
+                    %li.address{:style => "min-width:370px;max-width:370px;"}
+                      %a{:href => "/locations/#{location.id}/reviews"}
+                        = location.address1[0, 40] + ", " + location.city + ", " + location.country
+                    %li.review-number{:style => "min-width:60px;max-width:60px;"}
+                      %a{:href => "/locations/#{location.id}/reviews", :style => "color:#2A282D;"}
+                        #{location.reviews.size} reviews
+                    %li.friends
+                      %img{:src => "#{location.reviews[0].user.profile_image_url}"}
+                      %span
+                        %a{:href => "/locations/#{location.id}/reviews", :style => "min-width:200px;max-width:200px;color:#2A282D;"}
+                          = location.reviews[0].message[0, 50] + ".."

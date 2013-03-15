@@ -1,0 +1,10 @@
+%header
+  %div.centered
+    %h1#headerLogo
+      %a{:href => "/"}
+        //%img{:src => "assets/renters-view-logo.png" , :alt => "renter view logo"}
+    = render '/shared/authentication_big_buttons'
+%section.search
+  %div.centered
+    = render '/shared/flash_messages'
+    = render '/shared/search'

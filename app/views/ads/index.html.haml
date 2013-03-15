@@ -1,0 +1,7 @@
+%h1 Location ##{@location.id}
+
+%ul
+  - @ads.each do |ad|
+    %li
+      = ad.message
+      = link_to 'Contact User', new_message_path(to: ad.user.id)

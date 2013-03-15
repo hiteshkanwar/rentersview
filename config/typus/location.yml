@@ -1,0 +1,8 @@
+# Use the README file as a reference to customize settings.
+
+Location:
+  fields:
+    default: address1, city, region, country
+    form: address1, address2, city, region, country, postal_code, longitude, latitude, photo_file_name, photo_file_size
+  relationships: reviews, ads, location_photos
+  application: Application

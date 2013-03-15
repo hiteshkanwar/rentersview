@@ -1,0 +1,13 @@
+%div{:style => "max-width:450px;"}
+  %h2{:style => "line-height:20px;font-size:10pt;"} 
+    This location has not yet been rated...
+  %p{:style => "margin-left:20px;"} Be the first to leave a review!
+  %br
+  %br
+  %p.buttons{:style => "margin-left:20px;width:500px;line-height:28px;"}
+    = link_to 'Add a review', new_location_path(address: params[:query]), :class => 'add-review-btn'
+    or
+    = link_to 'Create Ad', new_location_path(address: params[:query], type: 'ad'), :class => 'add-review-btn'
+    == for 
+    %span{:style => "text-transform:capitalize;font-weight:bold;"}
+      == #{params[:query]}?

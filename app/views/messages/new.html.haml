@@ -1,0 +1,10 @@
+= form_for @message do |f|
+  = f.hidden_field :receiver_id
+  %div
+    TO:
+    = image_tag(@message.receiver.profile_image_url, width: 30)
+    = @message.receiver.name
+  %div
+    = f.label :content
+    = f.text_area :content
+  = f.submit
