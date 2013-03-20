@@ -1,6 +1,6 @@
-<<<<<<< HEAD
+
 Renters View
-============
+
 
 Installation Instructions
 ------------------------
@@ -32,9 +32,6 @@ Reindexing the data:
 ```bash
 rake sunspot:reindex
 ```
-=======
-rentersview
-===========
 
-Renters View
->>>>>>> d6f2f8f37cc86e8c06c5fe5cf77e359847922f42
+rentersview
+

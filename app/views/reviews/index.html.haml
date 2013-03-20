@@ -1,7 +1,10 @@
 %div.left-bar
   %div#mapBox{:style => "display:none;"}
-    %div#reviewMap
-      %iframe{:frameborder => "0", :scrolling => "no", :marginheight => "0", :marginwidth => "0", :src => "https://maps.google.com/maps?q=#{@location.address1},#{@location.city},#{@location.country}&hl=en&ie=UTF8&hq=&hnear=#{@location.address1},#{@location.city},#{@location.country}&t=m&z=14&ll=#{@location.latitude},#{@location.longitude}&output=embed", :width => "800", :height => "500"}
+    %div#reviewMap{:style => "width:800px;height:500px;"}
+      %iframe{:frameborder => "0", :scrolling => "no", :marginheight => "0", :marginwidth => "0", :src => "http://maps.google.com.uy/maps?q=#{@location.address1},#{@location.city},#{@location.country}&hl=en&ie=UTF8&hq=&hnear=#{@location.address1},#{@location.city},#{@location.region},#{@location.country}&t=m&z=15&output=embed", :width => "800", :height => "300"}
+      %iframe{:frameborder => "0", :scrolling => "no", :marginheight => "0", :marginwidth => "0", :src => "http://maps.google.com.uy/maps?q=#{@location.address1},#{@location.city},#{@location.country}&hl=en&ie=UTF8&hq=&hnear=#{@location.address1},#{@location.city},#{@location.region},#{@location.country}&t=m&z=15&output=svembed&layer=c&panoid=0&cbp=0,,0,0", :width => "800", :height => "200"}
+
+      -#%iframe{:frameborder => "0", :scrolling => "no", :marginheight => "0", :marginwidth => "0", :src => "https://maps.google.com/maps?q=#{@location.address1},#{@location.city},#{@location.country}&hl=en&ie=UTF8&hq=&hnear=#{@location.address1},#{@location.city},#{@location.country}&t=m&z=14&ll=#{@location.latitude},#{@location.longitude}&output=embed", :width => "800", :height => "500"}
 	
   %ul.review-bloqs
     %li
@@ -64,8 +67,17 @@
                         %img{:src => "#{review.user.profile_image_url}",:style => "width:40px;"} 
                       %span.name
                         = review.user.first_name.to_s + " " + review.user.last_name.to_s
+                      %span{:style=>"float:right;"}
+                        - if current_user.id == review.user.id
+                          = link_to "Edit Review",edit_location_review_path(review.location,review)
+                        %span{:style=>"font-weight:bold;margin-left:5px;"}
+                          Last Updated:
+                        = review.updated_at unless review.updated_at.nil?
+
                       %p.message
-                        = review.message      
+                        = review.message
+
+
 
   %div.rev-shadow-large
 %section.tabs

@@ -7,8 +7,8 @@ RentersView::Application.routes.draw do
   root :to => "home#index"
 
   resources :locations, only: [:new, :create, :show] do
-    resources :reviews, only: [:index, :new, :create]
-    resources :ads, only: [:index, :new, :create]
+    resources :reviews, only: [:index, :new, :create,:edit,:update]
+    resources :ads, only: [:index, :new, :create,:edit,:update]
   end
 
   resources :messages, only: [:index, :new, :create, :show]

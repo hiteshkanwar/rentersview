@@ -232,9 +232,9 @@ Devise.setup do |config|
 
   #config.omniauth :facebook, 201678839967218, '83ad1cbb615ff56bba83a6ced8f104af', :strategy_class => OmniAuth::Strategies::Facebook
   #facebook key for localhost:3000
-  #config.omniauth :facebook, 152531778242112, '84fb0a2b58cea800b8d7a87dccd408bb', :strategy_class => OmniAuth::Strategies::Facebook
+  config.omniauth :facebook, 152531778242112, '84fb0a2b58cea800b8d7a87dccd408bb', :strategy_class => OmniAuth::Strategies::Facebook
   
   #facebook app key for www.rentersview.com
-  config.omniauth :facebook, 516425928409842, 'e35048bd0ec156d195e047a500080c45', :strategy_class => OmniAuth::Strategies::Facebook
+  #config.omniauth :facebook, 516425928409842, 'e35048bd0ec156d195e047a500080c45', :strategy_class => OmniAuth::Strategies::Facebook
   config.omniauth :twitter, "oLvJpRdtYwkpt6dfocIGIw", "tEKViU3vXhnGfFuGxJ9JtlP5OwX34zBn1xXTMdpVfo"
 end

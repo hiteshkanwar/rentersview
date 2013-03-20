@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create]
-  before_filter :load_location, only: [:index, :new, :create]
+  before_filter :load_location, only: [:index, :new, :create,:edit]
 
   def index
     @reviews = @location.reviews
@@ -9,6 +9,19 @@ class ReviewsController < ApplicationController
   def new
     @review = @location.reviews.new
   end
+
+  def edit
+    @review = @location.reviews.find(params[:id])
+  end  
+
+  def update
+    @review = Review.find(params[:id])
+    if @review.update_attributes(params[:review])
+      redirect_to location_reviews_path
+    else
+      render "edit"  
+    end  
+  end  
 
   def create
     @review = @location.reviews.new(params[:review])
