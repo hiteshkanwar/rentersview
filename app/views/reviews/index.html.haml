@@ -68,8 +68,10 @@
                       %span.name
                         = review.user.first_name.to_s + " " + review.user.last_name.to_s
                       %span{:style=>"float:right;"}
-                        - if current_user.id == review.user.id
-                          = link_to "Edit Review",edit_location_review_path(review.location,review)
+                        - if current_user
+                          
+                          - if current_user.id == review.user.id
+                            = link_to "Edit Review",edit_location_review_path(review.location,review)
                         %span{:style=>"font-weight:bold;margin-left:5px;"}
                           Last Updated:
                         = review.updated_at unless review.updated_at.nil?
