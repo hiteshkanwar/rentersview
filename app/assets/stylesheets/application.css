@@ -849,8 +849,7 @@ article.mod-review .buttons a {
 }
 
 
-.search-bar .buttons a {
-	background:#2a282d;
+.search-bar .buttons a { 
 	border-radius: 12px;
 	color: #2A282D;
 	padding: 4px 8px;
