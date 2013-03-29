@@ -33,16 +33,17 @@
                       %img{:src => "#{ad.user.profile_image_url}",  :style => "width:40px;"}
                   %div
                     %span.name #{ad.user.first_name} #{ad.user.last_name}
-                  %p.contact-info{:style => "font-size:11px;color:#666;"}
-                    Contact info:
-                    = ad.contact
+                  -#%p.contact-info{:style => "font-size:11px;color:#666;"}
+                    -#Contact info:
+                    -#= ad.contact
                   %p{:style => "font-style:italic;"}
                     = ad.message
       
-    %div.rev-shadow         
+    %div.rev-shadow
        
 %div.main-bar#mainRightBar
   %section.review-page
+    %iframe{:frameborder => "0", :scrolling => "no", :marginheight => "0", :marginwidth => "0", :src => "http://maps.google.com.uy/maps?q=#{@location.address1},#{@location.city},#{@location.country}&hl=en&ie=UTF8&hq=&hnear=#{@location.address1},#{@location.city},#{@location.region},#{@location.country}&t=m&z=15&output=svembed&layer=c&panoid=0&cbp=0,,0,0", :width => "625", :height => "250"}
     %h1
       = @location.address1
       %span 
@@ -69,7 +70,6 @@
                         = review.user.first_name.to_s + " " + review.user.last_name.to_s
                       %span{:style=>"float:right;"}
                         - if current_user
-                          
                           - if current_user.id == review.user.id
                             = link_to "Edit Review",edit_location_review_path(review.location,review)
                         %span{:style=>"font-weight:bold;margin-left:5px;"}
@@ -89,6 +89,9 @@
         %a{:href=>"#1"} Latest locations
       %li
         %a{:href=>"#2"} Most popular places
+      - if !current_user.nil?
+        %li
+          %a{:href=>"#3"} My reviews
         
     %div.tabs-content{:name =>"#1"}
       %ul
@@ -131,3 +134,23 @@
                       %span
                         %a{:href => "/locations/#{location.id}/reviews", :style => "min-width:200px;max-width:200px;color:#2A282D;"}
                           = location.reviews[0].message[0, 50] + ".."
+
+    %div.tabs-content{:name =>"#3"}
+      %ul
+        %li
+          %table
+            - if !@my_reviews.blank?
+              - @my_reviews.each do |review|
+                %li
+                  %ul
+                    %li.address{:style => "min-width:370px;max-width:370px;"}
+                      %a{:href => "/locations/#{review.location.id}/reviews"}
+                        = review.location.address1[0, 40] + ", " + review.location.city + ", " + review.location.country
+                    %li.day{:style => "min-width:100px;max-width:100px;"}
+                      = time_ago_in_words(review.updated_at)
+                    %li.friends
+                      %a{:href => "/locations/#{review.location.id}/reviews", :style => "min-width:200px;max-width:200px;color:#2A282D;"}
+                        = review.message[0, 50] + ".."
+            - else 
+              %li
+                You did not give any review yet!!

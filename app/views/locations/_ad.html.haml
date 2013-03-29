@@ -7,8 +7,8 @@
       %img{:src => "#{ad.user.profile_image_url}",:style => "width:40px;"}
       %span.name
         = ad.user.first_name.to_s + " " + ad.user.last_name.to_s
-      %p.contact-info
-        Contact info:
-        = ad.contact
+      -#%p.contact-info
+      -#  Contact info:
+      -#  = ad.contact
       %p.message
         = ad.message

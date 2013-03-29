@@ -12,14 +12,20 @@
                 %img{:src => "http://maps.google.com/maps/api/staticmap?center=#{location.latitude},#{location.longitude}&markers=color:red|#{location.latitude},#{location.longitude}&zoom=12&size=300x248&sensor=false&key=AIzaSyDBErX3M80EQqJ0JSWjRdYINF6WuGXUQo0&maptype=roadmap", :width => "300", :height => "248"}
               %figcaption
                 %a{:href => "/locations/#{location.id}/reviews"}
-                  = location.address1
+                  %div
+                    = location.address1 
+                    = ', ' + location.address2 if !location.address2.nil?
+                    %br
+                    = location.city + ", " + location.country
             %div.review
               %div
                 - if !location.reviews[0].user.profile_image_url.blank?
-                  %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
+                  %a{:href => "/locations/#{location.id}/reviews"}
+                    %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
               %div
-                %span.name
-                  = location.reviews[0].user.first_name.to_s + " " + location.reviews[0].user.last_name.to_s
+                %a{:href => "/locations/#{location.id}/reviews"}
+                  %span.name
+                    = location.reviews[0].user.first_name.to_s + " " + location.reviews[0].user.last_name.to_s
               %p
                 = '"' + location.reviews[0].message + '"'
           %div.rev-shadow   

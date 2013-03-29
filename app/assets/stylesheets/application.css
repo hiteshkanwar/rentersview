@@ -221,15 +221,15 @@ section.search form input[type=submit] {
 	-webkit-border-radius:14px;
 	border-radius:14px;
 	height:37px;
-	border: 1px solid #f2c43a;
+	border: 1px solid #3EADDC;
 	font-size:14px;
 	font-weight:bold;
-	background: #FFCF3D;
-	background: -moz-linear-gradient(top, #FFD557 0%, #FFCF3D 100%);
+	background: #3EADDC;
+	background: -moz-linear-gradient(top, #4DC6F9 0%, #3EADDC 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFD557), color-stop(100%, #FFCF3D));
-	background: -webkit-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); 
-	background: -ms-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); 
-	background: linear-gradient(to bottom, #FFD557 0%, #FFCF3D 100%); 
+	background: -webkit-linear-gradient(top, #4DC6F9 0%, #3EADDC 100%); 
+	background: -ms-linear-gradient(top, #4DC6F9 0%, #3EADDC 100%); 
+	background: linear-gradient(to bottom, #4DC6F9 0%, #3EADDC 100%); 
 	/*
 	-moz-box-shadow: inset 0 0 3px #c1edff;
 	-webkit-box-shadow: inset 0 0 3px #c1edff;
@@ -240,7 +240,7 @@ section.search form input[type=submit] {
 	vertical-align:bottom
 }
 section.search form input[type=submit]:hover {
-	background: #FFCF3D;
+	background: #4DC6F9;
 	color:#f3f3f3;
 }
 /*
@@ -453,35 +453,35 @@ ul.search-results li .buttons {
 	right:12px
 }
 ul.search-results li .buttons a, article.mod-review .buttons a {
-	background:#2a282d;
+	background:#3eaddc;
 	border-radius: 12px;
-	color: #2A282D;
+	color: #fff;
 	padding: 2px 6px;
 	font-size:85%;
-	background: #FFCF3D; /* Old browsers */
-	background: -moz-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFD557), color-stop(100%, #FFCF3D)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); /* IE10+ */
-	background: linear-gradient(to bottom, #FFD557 0%, #FFCF3D 100%); /* W3C */
+	background: #3eaddc; /* Old browsers */
+	background: -moz-linear-gradient(top, #4dc6f9 0%, #3eaddc 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4dc6f9), color-stop(100%, #3eaddc)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #4dc6f9 0%, #3eaddc 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #4dc6f9 0%, #3eaddc 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #4dc6f9 0%, #3eaddc 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #4dc6f9 0%, #3eaddc 100%); /* W3C */
 	/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#2a282d',GradientType=0 ); /* IE6-9 */
 
-    border:1px solid #F2C43A;
+border:1px solid #49B0DB;
 }
 
 article.mod-review .buttons a:hover {
-	background: #FFD557;
+	background: #4DC6F9;
 	text-decoration:none;
 }
 
 .search-bar .buttons a:hover {
-	background: #FFD557;
+	background: #3eaddc;
 	text-decoration:none;
 }
 
 ul.search-results li .buttons a:hover {
-	background: #FFD557;
+	background: #4DC6F9;
 	text-decoration:none;
 }
 
@@ -814,7 +814,7 @@ section#main #location_show article figcaption a:hover {
 	bottom:30px;
 	right:12px
 }
-#location_show .buttons a{
+#location_show .buttons a, article.mod-review .buttons a {
 	background:#2a282d;
 	border-radius: 12px;
 	color: #fff;
@@ -831,39 +831,25 @@ section#main #location_show article figcaption a:hover {
 	border:1px solid #49b0db;
 }
 
-article.mod-review .buttons a {
+.search-bar .buttons a { 
 	background:#2a282d;
 	border-radius: 12px;
-	color: #2A282D;
-	padding: 2px 6px;
-	font-size:85%;
-	background: #FFCF3D; /* Old browsers */
-	background: -moz-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFD557), color-stop(100%, #FFCF3D)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); /* IE10+ */
-	background: linear-gradient(to bottom, #FFD557 0%, #FFCF3D 100%); /* W3C */
-	/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#2a282d',GradientType=0 ); /* IE6-9 */
-	border:1px solid #F2C43A;
-}
-
-
-.search-bar .buttons a { 
-	border-radius: 12px;
-	color: #2A282D;
+	color: #fff;
 	padding: 4px 8px;
 	font-size:85%;
-	background: #FFCF3D; /* Old browsers */
-	background: -moz-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFD557), color-stop(100%, #FFCF3D)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); /* IE10+ */
-	background: linear-gradient(to bottom, #FFD557 0%, #FFCF3D 100%); /* W3C */
+	background: #3eaddc; /* Old browsers */
+	background: -moz-linear-gradient(top, #4dc6f9 0%, #3eaddc 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4dc6f9), color-stop(100%, #3eaddc)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #4dc6f9 0%, #3eaddc 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #4dc6f9 0%, #3eaddc 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #4dc6f9 0%, #3eaddc 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #4dc6f9 0%, #3eaddc 100%); /* W3C */
 	/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#2a282d',GradientType=0 ); /* IE6-9 */
-	border:1px solid #F2C43A;
+	border:1px solid #49b0db;
 }
+
+.facebook_signin {width:150px;height:15px;background:url(facebook_signin.png) no-repeat;float:left;}
+.twitter_signin {width:150px;height:15px;background:url(twitter_signin.png) no-repeat;float:left;}
 
 /*
  * OLD BLACK
@@ -885,5 +871,4 @@ article.mod-review .buttons a {
 }
 */
 
-.facebook_signin {width:150px;height:15px;background:url(facebook_signin.png) no-repeat;float:left;}
-.twitter_signin {width:150px;height:15px;background:url(twitter_signin.png) no-repeat;float:left;}
+.field_with_errors input{ border:1px dashed red !important;}

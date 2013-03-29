@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
 
   def index
     @reviews = @location.reviews
+    @my_reviews = current_user.reviews
   end
 
   def new
@@ -12,16 +13,16 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = @location.reviews.find(params[:id])
-  end  
+  end
 
   def update
     @review = Review.find(params[:id])
     if @review.update_attributes(params[:review])
       redirect_to location_reviews_path
     else
-      render "edit"  
-    end  
-  end  
+      render "edit"
+    end
+  end
 
   def create
     @review = @location.reviews.new(params[:review])
