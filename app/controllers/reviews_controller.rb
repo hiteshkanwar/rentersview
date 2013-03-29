@@ -4,7 +4,9 @@ class ReviewsController < ApplicationController
 
   def index
     @reviews = @location.reviews
-    @my_reviews = current_user.reviews
+    if !current_user.nil?
+      @my_reviews = current_user.reviews
+    end
   end
 
   def new
