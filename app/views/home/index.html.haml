@@ -20,11 +20,14 @@
             %div.review
               %div
                 - if !location.reviews[0].user.profile_image_url.blank?
-                  - if location.reviews[0].user.authorizations.first.provider == 'twitter'
+                  - if location.reviews[0].user.authorizations.first.provider == 'twitter' && !location.reviews[0].user.authorizations.first.username.nil?
                     %a{:href => "http://twitter.com/#{location.reviews[0].user.authorizations.first.username}",:target=>'_blank'}
                       %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
-                  - else
+                  - elsif location.reviews[0].user.authorizations.first.provider == 'facebook' && !location.reviews[0].user.authorizations.first.username.nil?
                     %a{:href => "http://www.facebook.com/#{location.reviews[0].user.authorizations.first.username}",:target=>'_blank'}
+                      %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
+                  - else
+                    %a{:href => "/locations/#{location.id}/reviews"}
                       %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
               %div
                 %a{:href => "/locations/#{location.id}/reviews"}
