@@ -1,5 +1,5 @@
 class Authorization < ActiveRecord::Base
-  attr_accessible :provider, :secret, :token, :uid
+  attr_accessible :provider, :secret, :token, :uid,:username
 
   belongs_to :user
 
@@ -10,7 +10,9 @@ class Authorization < ActiveRecord::Base
   end
 
   def self.create_from_hash(hash, user=nil)
+
     user.authorizations.create(uid: hash['uid'],
+                               username: hash['username'] || hash['extra']['raw_info']['username'],
                                provider: hash['provider'],
                                secret: hash['credentials']['secret'],
                                token: hash['credentials']['token'])

@@ -20,7 +20,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     Rails.logger.debug auth_hash
     data = {}
     data['authorization'] = auth_hash.select { |k, v| ['uid', 'provider', 'credentials'].include?(k) }
+    if auth_hash.provider == 'twitter'
+      data['authorization']['username'] = auth_hash.extra.raw_info.screen_name
+    elsif auth_hash.provider == 'facebook'
+      data['authorization']['username'] = auth_hash.extra.raw_info.username
+    end
     data['user'] = auth_hash.extra.raw_info.select { |k, v| ['name', 'profile_image_url'].include?(k) }
+    
     data
   end
 
