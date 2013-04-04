@@ -3,10 +3,20 @@
     //%h3
     //%a.adress{:href => "/locations/#{ad.location.id}/reviews"}
     //= ad.location.address1  
-    %div.profile  
-      %img{:src => "#{ad.user.profile_image_url}",:style => "width:40px;"}
+    %div.profile
+      - if !ad.user.profile_image_url.blank?
+        - if ad.user.authorizations.first.provider == 'twitter' && !ad.user.authorizations.first.username.nil?
+          %a{:href => "http://twitter.com/#{ad.user.authorizations.first.username}",:target=>'_blank'}
+            %img{:src => "#{ad.user.profile_image_url}",  :style => "width:40px;"}
+        - elsif ad.user.authorizations.first.provider == 'facebook' && !ad.user.authorizations.first.username.nil?
+          %a{:href => "http://www.facebook.com/#{ad.user.authorizations.first.username}",:target=>'_blank'}
+            %img{:src => "#{ad.user.profile_image_url}",:style => "width:40px;"}
+        - else
+          %img{:src => "#{ad.user.profile_image_url}",:style => "width:40px;"}
       %span.name
         = ad.user.first_name.to_s + " " + ad.user.last_name.to_s
+        = link_to 'Contact', new_message_path(ad: ad.id,to: ad.user.id)
+        
       -#%p.contact-info
       -#  Contact info:
       -#  = ad.contact

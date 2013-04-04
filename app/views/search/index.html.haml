@@ -62,7 +62,15 @@
                   %a{:href => "/locations/#{location.id}/reviews", :style => "color:#2A282D;"}
                     #{location.reviews.size} review
                 %li.friends
-                  %img{:src => "#{location.reviews[0].user.profile_image_url}"}
+                  - if !location.reviews[0].user.profile_image_url.blank?
+                    - if location.reviews[0].user.authorizations.first.provider == 'twitter' && !location.reviews[0].user.authorizations.first.username.nil?
+                      %a{:href => "http://twitter.com/#{location.reviews[0].user.authorizations.first.username}",:target=>'_blank'}
+                        %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
+                    - elsif location.reviews[0].user.authorizations.first.provider == 'facebook' && !location.reviews[0].user.authorizations.first.username.nil?
+                      %a{:href => "http://www.facebook.com/#{location.reviews[0].user.authorizations.first.username}",:target=>'_blank'}
+                        %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
+                    - else
+                      %img{:src => "#{location.reviews[0].user.profile_image_url}"}
                   %span
                     %a{:href => "/locations/#{location.id}/reviews", :style => "color:#2A282D;"}
                       = location.reviews[0].message[0, 40] + ".."
@@ -82,7 +90,15 @@
                       %a{:href => "/locations/#{location.id}/reviews", :style => "color:#2A282D;"}
                         #{location.reviews.size} reviews
                     %li.friends
-                      %img{:src => "#{location.reviews[0].user.profile_image_url}"}
+                      - if !location.reviews[0].user.profile_image_url.blank?
+                        - if location.reviews[0].user.authorizations.first.provider == 'twitter' && !location.reviews[0].user.authorizations.first.username.nil?
+                          %a{:href => "http://twitter.com/#{location.reviews[0].user.authorizations.first.username}",:target=>'_blank'}
+                            %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
+                        - elsif location.reviews[0].user.authorizations.first.provider == 'facebook' && !location.reviews[0].user.authorizations.first.username.nil?
+                          %a{:href => "http://www.facebook.com/#{location.reviews[0].user.authorizations.first.username}",:target=>'_blank'}
+                            %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
+                        - else
+                          %img{:src => "#{location.reviews[0].user.profile_image_url}"}
                       %span
                         %a{:href => "/locations/#{location.id}/reviews", :style => "min-width:200px;max-width:200px;color:#2A282D;"}
                           = location.reviews[0].message[0, 50] + ".."
