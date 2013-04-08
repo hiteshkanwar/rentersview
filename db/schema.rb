@@ -57,13 +57,13 @@ ActiveRecord::Schema.define(:version => 20130406090533) do
   add_index "authorizations", ["user_id"], :name => "index_authorizations_on_user_id"
 
   create_table "location_photos", :force => true do |t|
+    t.integer  "location_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.integer  "location_id"
     t.integer  "imageable_id"
     t.string   "imageable_type"
   end
