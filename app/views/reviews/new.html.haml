@@ -1,7 +1,16 @@
 %h2 Add a review
 
-= form_for [@location, @review] do |f|
+= form_for([@location, @review], :html => {:multipart => true}) do |f|
   %div.centered
+    %div.centered{:style=>"width:973px;"}
+      %b Add Photos
+      #location_photos
+        = f.fields_for :location_photos, @location do |photo|
+          = render 'locations/location_photos_fields', :f => photo
+          .links
+          = link_to_add_association image_tag('/assets/add.gif'), f, :location_photos,:partial => 'locations/location_photos_fields'
+        
+      %br
     %div.centered{:style => "width:973px;"}
       = f.text_area :message, :style => "border:solid 1px #ccc;width:620px;height:120px;"
       %br

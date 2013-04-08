@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121126224335) do
+ActiveRecord::Schema.define(:version => 20130406090533) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "first_name",       :default => "",    :null => false
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(:version => 20121126224335) do
     t.integer  "location_id"
     t.integer  "user_id"
     t.text     "message"
-    t.string   "suburb"
-    t.text     "address"
+    t.string   "suburb",      :null => false
+    t.text     "address",     :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.text     "contact"
@@ -51,18 +51,21 @@ ActiveRecord::Schema.define(:version => 20121126224335) do
     t.string   "secret"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "username"
   end
 
   add_index "authorizations", ["user_id"], :name => "index_authorizations_on_user_id"
 
   create_table "location_photos", :force => true do |t|
-    t.integer  "location_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer  "location_id"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
   end
 
   create_table "locations", :force => true do |t|
@@ -88,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20121126224335) do
     t.text     "content"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "ad_id"
   end
 
   add_index "messages", ["receiver_id"], :name => "index_messages_on_receiver_id"

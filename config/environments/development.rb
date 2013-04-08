@@ -34,4 +34,18 @@ RentersView::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  config.action_mailer.default_url_options = {:host => 'rentersview.com'}
+  config.action_mailer.delivery_method = :smtp
+ActionMailer::Base.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :domain               => "rentersview.com",
+  :user_name            => "rentersview.app@gmail.com",
+  :password             => "rv123456",
+  :authentication       => "plain",
+  :enable_starttls_auto => true
+}
+
+
+
 end

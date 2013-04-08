@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create]
-  before_filter :load_location, only: [:index, :new, :create,:edit]
-
+  before_filter :load_location, only: [:index, :new, :create,:edit,:update]
+  before_filter :remove_params,only: [:create]
   def index
     @reviews = @location.reviews
     if !current_user.nil?
@@ -19,8 +19,17 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    if @review.update_attributes(params[:review])
-      redirect_to location_reviews_path
+    #  @review.location_photos.each do |p|
+    #   p.destroy
+    # end
+    if !params['location_photos'].blank?
+        params['location_photos'].each do |photo|
+          @review.location_photos.create(:location_id => params[:location_id], :photo => photo,:imageable_id=>@review.id,:imageable_type=>'Review')
+        end
+    end
+    if @review.update_attributes(:message=>params[:review][:message])
+        
+      redirect_to location_reviews_path(@location)
     else
       render "edit"
     end
@@ -30,6 +39,11 @@ class ReviewsController < ApplicationController
     @review = @location.reviews.new(params[:review])
     @review.user = current_user
     if @review.save
+      if !params['location_photos'].blank?
+        params['location_photos'].each do |photo|
+          LocationPhoto.create(:location_id => @location.id, :photo => photo,:imageable_id=>@review.id,:imageable_type=>'Review')
+        end
+      end
       redirect_to location_reviews_path(@location), notice: 'Review added successfully.'
     else
       render :new
@@ -90,5 +104,12 @@ class ReviewsController < ApplicationController
     @location = Location.find(params[:location_id])
     @latests_locations = Location.last(2)
     @popular_locations = Location.select("locations.*, count(reviews.id) as review_counts").joins(:reviews).group("locations.id").order("review_counts DESC").limit(2)
+  end
+
+  def remove_params
+    if params[:review][:location_photos].present?
+     params[:review].delete :location_photos
+     return params[:review]
+    end
   end
 end

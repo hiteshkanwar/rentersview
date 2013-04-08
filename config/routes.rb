@@ -31,4 +31,6 @@ RentersView::Application.routes.draw do
   match "privacy" => "pages#privacy"
   match "help" => "pages#help"
   match "contact-us" => "pages#contact_us"
+
+  get "users/:id/reviews" => "users#reviews"
 end

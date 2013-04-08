@@ -12,4 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.widget
+//= require load-image
+//= require canvas-to-blob
+//= require tmpl
+//= require jquery.iframe-transport.js
+//= require jquery.fileupload
+//= require jquery.fileupload-ip
+//= require jquery.fileupload-ui
 //= require_tree .

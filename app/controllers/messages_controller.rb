@@ -12,6 +12,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(params[:message])
     @message.sender = current_user
+    debugger
     if @message.save
       redirect_to messages_path
     else

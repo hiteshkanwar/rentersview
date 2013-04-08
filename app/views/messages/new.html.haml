@@ -1,5 +1,6 @@
 = form_for @message do |f|
   = f.hidden_field :receiver_id
+  = f.hidden_field :ad_id, :value=>params[:ad]
   %div
     TO:
     = image_tag(@message.receiver.profile_image_url, width: 30)

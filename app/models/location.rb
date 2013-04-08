@@ -3,11 +3,14 @@ require 'wikipedia'
 class Location < ActiveRecord::Base
   attr_protected :id
 
+
   has_many :reviews, dependent: :destroy
   has_many :ads, dependent: :destroy
-  has_many :location_photos, dependent: :destroy
+  has_many :location_photos
+  
 
-  accepts_nested_attributes_for :reviews, :ads, :location_photos
+  accepts_nested_attributes_for :reviews, :ads
+  accepts_nested_attributes_for :location_photos, :reject_if => :all_blank, :allow_destroy => true
 
   validates_presence_of :address1, :city, :region, :country
   

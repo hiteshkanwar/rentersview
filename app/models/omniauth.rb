@@ -7,7 +7,6 @@ module Omniauth
 
     def find_or_create_from_oauth(auth, current_user=nil)
       authorization = Authorization.find_from_hash(auth)
-
       user = if authorization
         authorization.user
       else

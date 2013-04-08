@@ -50,55 +50,57 @@
     %div.tabs-content{:name =>"#1"}
       %ul
         - @latests_locations3.each do |location|
-          - if !location.reviews[0].user.blank?
-            %li
-              %ul
-                %li.day{:style => "min-width:100px;max-width:100px;"}
-                  = time_ago_in_words(location.created_at)
-                %li.address{:style => "min-width:325px;max-width:325px;"}
-                  %a{:href => "/locations/#{location.id}/reviews"}
-                    = location.address1[0, 30] + ", " + location.city + ", " + location.country
-                %li.review-number
-                  %a{:href => "/locations/#{location.id}/reviews", :style => "color:#2A282D;"}
-                    #{location.reviews.size} review
-                %li.friends
-                  - if !location.reviews[0].user.profile_image_url.blank?
-                    - if location.reviews[0].user.authorizations.first.provider == 'twitter' && !location.reviews[0].user.authorizations.first.username.nil?
-                      %a{:href => "http://twitter.com/#{location.reviews[0].user.authorizations.first.username}",:target=>'_blank'}
-                        %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
-                    - elsif location.reviews[0].user.authorizations.first.provider == 'facebook' && !location.reviews[0].user.authorizations.first.username.nil?
-                      %a{:href => "http://www.facebook.com/#{location.reviews[0].user.authorizations.first.username}",:target=>'_blank'}
-                        %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
-                    - else
-                      %img{:src => "#{location.reviews[0].user.profile_image_url}"}
-                  %span
+          - if !location.reviews[0].blank?
+            - if !location.reviews[0].user.blank?
+              %li
+                %ul
+                  %li.day{:style => "min-width:100px;max-width:100px;"}
+                    = time_ago_in_words(location.created_at)
+                  %li.address{:style => "min-width:325px;max-width:325px;"}
+                    %a{:href => "/locations/#{location.id}/reviews"}
+                      = location.address1[0, 30] + ", " + location.city + ", " + location.country
+                  %li.review-number
                     %a{:href => "/locations/#{location.id}/reviews", :style => "color:#2A282D;"}
-                      = location.reviews[0].message[0, 40] + ".."
+                      #{location.reviews.size} review
+                  %li.friends
+                    - if !location.reviews[0].user.profile_image_url.blank?
+                      - if location.reviews[0].user.authorizations.first.provider == 'twitter' && !location.reviews[0].user.authorizations.first.username.nil?
+                        %a{:href => "http://twitter.com/#{location.reviews[0].user.authorizations.first.username}",:target=>'_blank'}
+                          %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
+                      - elsif location.reviews[0].user.authorizations.first.provider == 'facebook' && !location.reviews[0].user.authorizations.first.username.nil?
+                        %a{:href => "http://www.facebook.com/#{location.reviews[0].user.authorizations.first.username}",:target=>'_blank'}
+                          %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
+                      - else
+                        %img{:src => "#{location.reviews[0].user.profile_image_url}"}
+                    %span
+                      %a{:href => "/locations/#{location.id}/reviews", :style => "color:#2A282D;"}
+                        = location.reviews[0].message[0, 40] + ".."
 
     %div.tabs-content{:name =>"#2"}
       %ul
         %li
           %table
             - @popular_locations2.each do |location|
-              - if !location.reviews[0].user.blank?
-                %li
-                  %ul
-                    %li.address{:style => "min-width:370px;max-width:370px;"}
-                      %a{:href => "/locations/#{location.id}/reviews"}
-                        = location.address1[0, 40] + ", " + location.city + ", " + location.country
-                    %li.review-number{:style => "min-width:60px;max-width:60px;"}
-                      %a{:href => "/locations/#{location.id}/reviews", :style => "color:#2A282D;"}
-                        #{location.reviews.size} reviews
-                    %li.friends
-                      - if !location.reviews[0].user.profile_image_url.blank?
-                        - if location.reviews[0].user.authorizations.first.provider == 'twitter' && !location.reviews[0].user.authorizations.first.username.nil?
-                          %a{:href => "http://twitter.com/#{location.reviews[0].user.authorizations.first.username}",:target=>'_blank'}
-                            %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
-                        - elsif location.reviews[0].user.authorizations.first.provider == 'facebook' && !location.reviews[0].user.authorizations.first.username.nil?
-                          %a{:href => "http://www.facebook.com/#{location.reviews[0].user.authorizations.first.username}",:target=>'_blank'}
-                            %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
-                        - else
-                          %img{:src => "#{location.reviews[0].user.profile_image_url}"}
-                      %span
-                        %a{:href => "/locations/#{location.id}/reviews", :style => "min-width:200px;max-width:200px;color:#2A282D;"}
-                          = location.reviews[0].message[0, 50] + ".."
+              - if !location.reviews[0].blank?
+                - if !location.reviews[0].user.blank?
+                  %li
+                    %ul
+                      %li.address{:style => "min-width:370px;max-width:370px;"}
+                        %a{:href => "/locations/#{location.id}/reviews"}
+                          = location.address1[0, 40] + ", " + location.city + ", " + location.country
+                      %li.review-number{:style => "min-width:60px;max-width:60px;"}
+                        %a{:href => "/locations/#{location.id}/reviews", :style => "color:#2A282D;"}
+                          #{location.reviews.size} reviews
+                      %li.friends
+                        - if !location.reviews[0].user.profile_image_url.blank?
+                          - if location.reviews[0].user.authorizations.first.provider == 'twitter' && !location.reviews[0].user.authorizations.first.username.nil?
+                            %a{:href => "http://twitter.com/#{location.reviews[0].user.authorizations.first.username}",:target=>'_blank'}
+                              %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
+                          - elsif location.reviews[0].user.authorizations.first.provider == 'facebook' && !location.reviews[0].user.authorizations.first.username.nil?
+                            %a{:href => "http://www.facebook.com/#{location.reviews[0].user.authorizations.first.username}",:target=>'_blank'}
+                              %img{:src => "#{location.reviews[0].user.profile_image_url}", :alt =>"#{location.reviews[0].user.first_name}", :style => "width:45px;"}
+                          - else
+                            %img{:src => "#{location.reviews[0].user.profile_image_url}"}
+                        %span
+                          %a{:href => "/locations/#{location.id}/reviews", :style => "min-width:200px;max-width:200px;color:#2A282D;"}
+                            = location.reviews[0].message[0, 50] + ".."

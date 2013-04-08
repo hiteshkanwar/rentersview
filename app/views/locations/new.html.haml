@@ -3,6 +3,13 @@
 %div.centered
   %div{:style => "width:500px;float:left;"}
     = form_for(@location, :html => {:multipart => true}) do |f|
+      - if @location.errors.any?
+        #error_explanation
+          %h2= pluralize(@location.errors.count, "error")
+          "prohibited this user from being saved:"
+          %ul 
+            - @location.errors.full_messages.each do |msg|
+              %li= msg
       = f.hidden_field :latitude
       = f.hidden_field :longitude
       %div
@@ -22,9 +29,11 @@
         = f.text_field :postal_code
         
       %div
-        = f.fields_for :location_photos, @location do |p|
-          = p.label "Photos"
-          %input#location_photos{:type => "file", :class => "upload_photos", :name => "location_photos[]", :multiple => true}
+        #location_photos
+          = f.fields_for :location_photos, @location do |photo|
+            = render 'locations/location_photos_fields', :f => photo
+          .links
+            = link_to_add_association 'add photo', f, :location_photos,:partial => 'locations/location_photos_fields'
         
       %br
       %br
@@ -37,6 +46,7 @@
         %h2{:style => "margin-left:-20px;"} Add an Ad
         %div
           = a.text_area :message, :style => "width:444px;height:60px;border:solid 1px #ccc;"
+
       
       = f.submit 'Submit', :id => "submit_new_location"
     

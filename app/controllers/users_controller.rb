@@ -14,4 +14,10 @@ class UsersController < ApplicationController
       render :json => response
     end
   end
+
+  def reviews
+    @user = User.find(params[:id])
+    @reviews = @user.reviews
+    debugger
+  end
 end

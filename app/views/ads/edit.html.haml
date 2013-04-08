@@ -1,0 +1,5 @@
+%h2 Edit an Ad
+- if !@ad.location_photos.blank?
+  - @ad.location_photos.each do |i|
+    %img{:src => "#{i.photo.url(:thumb)}"}
+= render 'ads/form'

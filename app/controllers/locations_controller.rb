@@ -9,6 +9,7 @@ class LocationsController < ApplicationController
     @location = Location.new(geocode_new_address(params[:address]))
     if params[:type] == 'ad'
       @ad = @location.ads.new
+      @ad.contact = current_user.email 
     else
       @review = @location.reviews.new
     end
@@ -20,9 +21,17 @@ class LocationsController < ApplicationController
     @location = Location.new(params[:location])
     
     if @location.save
-      if !params['location_photos'].blank?
-        params['location_photos'].each do |photo|
-          LocationPhoto.create(:location_id => @location.id, :photo => photo)
+      if !params[:location][:ads_attributes].nil?
+        if !params['location_photos'].blank?
+          params['location_photos'].each do |photo|
+            LocationPhoto.create(:location_id => @location.id, :photo => photo,:imageable_id=>@location.ads.first.id,:imageable_type=>'Ad')
+          end
+        end
+      else
+         if !params['location_photos'].blank?
+          params['location_photos'].each do |photo|
+            LocationPhoto.create(:location_id => @location.id, :photo => photo,:imageable_id=>@location.reviews.first.id,:imageable_type=>'Review')
+          end
         end
       end
     
@@ -73,7 +82,11 @@ class LocationsController < ApplicationController
   end
 
   def add_user_info_to_nested_attribute(params)
-    (params[:location][:ads_attributes] || params[:location][:reviews_attributes])['0'].merge!({user_id: current_user.id})
+    if !params[:location][:ads_attributes].nil?
+      params[:location][:ads_attributes]['0'].merge!({user_id: current_user.id,contact: current_user.email,suburb: ''})
+    elsif !params[:location][:reviews_attributes].nil?
+      params[:location][:reviews_attributes]['0'].merge!({user_id: current_user.id})
+    end
   end
 
 end
