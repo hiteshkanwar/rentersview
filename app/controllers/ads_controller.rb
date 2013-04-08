@@ -23,7 +23,7 @@ class AdsController < ApplicationController
             LocationPhoto.create(:location_id => @location.id, :photo => photo,:imageable_id=>@ad.id,:imageable_type=>'Ad')
           end
       end
-      UserMailer.welcome_user(@ad.user,@ad).deliver
+      
       redirect_to location_reviews_path(@location), notice: 'Ad added successfully.'
     else
       render :new

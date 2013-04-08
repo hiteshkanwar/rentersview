@@ -12,9 +12,10 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(params[:message])
     @message.sender = current_user
-    debugger
     if @message.save
-      redirect_to messages_path
+      UserMailer.welcome_user(@message,@message.ad).deliver
+      flash[:notice] = 'Message sent successfully.'
+      redirect_to root_path
     else
       render :new
     end
