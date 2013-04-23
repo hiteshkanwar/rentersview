@@ -10,7 +10,7 @@ class LocationPhoto < ActiveRecord::Base
 		                    	:medium => "300x248>",
 		                    	:thumb => "90x78>",
                                 :storage => :s3,
-                                :s3_credentials => "#{RAILS.root}/config/s3.yml",
+                                :s3_credentials => "#{Rails.root}/config/s3.yml",
                                 :path => "/:style/:id/:filename"
 		                    }
                     
