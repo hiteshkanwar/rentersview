@@ -10,7 +10,7 @@
         = location.full_address  
     %span.review-number #{location.reviews.size} reviews
     %div.buttons  
-      = link_to 'Add Review', new_location_review_path(location), :class =>"add-review-btn"
-      = link_to 'Create Free Ad', new_location_ad_path(location), :class =>"add-ad-btn"
+      = link_to 'Add Review', new_location_review_path(location), :class =>"add-review-btn",:style=>"text-shadow: 1px 0px 1px #404040;"
+      = link_to 'Create Free Ad', new_location_ad_path(location), :class =>"add-ad-btn",:style=>"text-shadow: 1px 1px 0px #404040;"
   %div.rev-shadow 
   

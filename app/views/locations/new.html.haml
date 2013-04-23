@@ -29,11 +29,12 @@
         = f.text_field :postal_code
         
       %div
+        %b Add Photos
         #location_photos
           = f.fields_for :location_photos, @location do |photo|
             = render 'locations/location_photos_fields', :f => photo
           .links
-            = link_to_add_association 'add photo', f, :location_photos,:partial => 'locations/location_photos_fields'
+            = link_to_add_association image_tag('/assets/add.gif'), f, :location_photos,:partial => 'locations/location_photos_fields'
         
       %br
       %br

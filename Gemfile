@@ -12,7 +12,7 @@ gem 'cocoon'
 gem 'haml'
 gem 'jquery-rails'
 gem "jquery-fileupload-rails"
-
+#gem "remotipart", "~> 1.0"
 gem 'sass-rails',   :group => :assets
 gem 'coffee-rails', :group => :assets
 gem 'uglifier', '>= 1.0.3', :group => :assets

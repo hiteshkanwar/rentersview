@@ -18,11 +18,11 @@
             %img{:src => "http://maps.google.com/maps/api/staticmap?center=#{@location.latitude},#{@location.longitude}&markers=color:red|#{@location.latitude},#{@location.longitude}&zoom=14&size=300x248&sensor=false&key=AIzaSyDBErX3M80EQqJ0JSWjRdYINF6WuGXUQo0&maptype=roadmap", :width => "300", :height => "248"}
         %div.buttons
           %a.open-map{:href => "#reviewMap", :class=> 'fancybox-media'} See map
-          %a.add-review-btn{:href => "/locations/#{@location.id}/reviews/new"} Add Review
-          %a.add-ad-btn{:href => "/locations/#{@location.id}/ads/new"} Create Free Ad
+          %a.add-review-btn{:href => "/locations/#{@location.id}/reviews/new",:style=>"text-shadow: 1px 1px 0px #404040;"} Add Review
+          %a.add-ad-btn{:href => "/locations/#{@location.id}/ads/new",:style=>"text-shadow: 1px 1px 0px #404040;"} Create Free Ad
         - if !@location.ads.blank?
           %br
-          %h2
+          %h2{:style=>"color:#6E6E6E;"}
             Places for Rent nearby
           %ul.review-list
             - @location.ads.each do |ad|
@@ -40,27 +40,28 @@
                         %img{:src => "#{ad.user.profile_image_url}",:style => "width:40px;"}
                   %div
                     %span.name #{ad.user.first_name} #{ad.user.last_name}
+                    %span{:style=>"float:right;"}
+                      - if current_user
+                        - if current_user.id == ad.user.id
+                          = link_to "Edit",edit_location_ad_path(ad.location,ad),:style=>"color:#4ec8fb;"
+                    %div
+                      %span{:style=>"font-weight:bold;"}
+                        Last Updated:
+                      = ad.try(:updated_at).strftime('%Y-%m-%d %H:%M')
                   -#%p.contact-info{:style => "font-size:11px;color:#666;"}
                     -#Contact info:
                     -#= ad.contact
                   %p{:style => "font-style:italic;"}
                     = ad.message
-                  %span{:style=>"float:right;"}
-                    - if current_user
-                      - if current_user.id == ad.user.id
-                        = link_to "Edit Add",edit_location_ad_path(ad.location,ad)
-                    %span{:style=>"font-weight:bold;margin-left:5px;"}
-                      Last Updated:
-                    = ad.try(:updated_at).strftime('%Y-%m-%d %H:%M') 
       
     %div.rev-shadow
        
 %div.main-bar#mainRightBar
   %section.review-page
     %iframe{:frameborder => "0", :scrolling => "no", :marginheight => "0", :marginwidth => "0", :src => "http://maps.google.com.uy/maps?q=#{@location.address1},#{@location.city},#{@location.country}&hl=en&ie=UTF8&hq=&hnear=#{@location.address1},#{@location.city},#{@location.region},#{@location.country}&t=m&z=15&output=svembed&layer=c&panoid=0&cbp=0,,0,0", :width => "625", :height => "250"}
-    %h1
+    %h1{:style=>"color:#6E6E6E;margin-top:10px;"}
       = @location.address1
-      %span 
+      %span{:style=>"color:#6E6E6E;"}
         = @location.city + ", " + @location.country
   
     %div.gallery
@@ -71,7 +72,7 @@
     - if !@location.blank?
       %section.add-sec
         - if !@reviews.blank?
-          %h2 Reviews
+          %h2{:style=>"color:#6E6E6E;"} Reviews
           %ul.add-list
             - @reviews.each do |review|
               - if !review.user.blank?
@@ -99,7 +100,13 @@
 
                       %p.message
                         = review.message
-
+                      %br
+          %h2{:style=>"color:#6E6E6E;"} Agent review
+          %div.agent_review{:style=>"padding-left:82px;padding-top:10px;"}
+            = form_tag  do 
+              = text_area_tag 'agent_review', nil, :size => "50x5"
+              %br
+              = submit_tag "Submit", :class=>"agent-review-submit", :style=>""
 
 
   %div.rev-shadow-large
@@ -142,7 +149,8 @@
                     %span
                       %a{:href => "/locations/#{location.id}/reviews", :style => "color:#2A282D;"}
                         = location.reviews[0].message[0, 40] + ".."
-
+                    
+                    
     %div.tabs-content{:name =>"#2"}
       %ul
         %li

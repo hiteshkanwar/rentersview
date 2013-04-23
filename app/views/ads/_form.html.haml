@@ -1,5 +1,9 @@
 = form_for([@location, @ad], :html => {:multipart => true,:class=>'ad_form_rv'} ) do |f|
   %div.centered
+    - if !@ad.errors[:terms_of_service].blank?
+      %div.centered{:style => "width:973px;color:red;padding-bottom:10px;"}
+        Terms & conditions 
+        = @ad.errors[:terms_of_service].first
     %div.centered{:style => "width:973px;"}
       %div{:style => "margin:20px 0 4px 0;"}
         Short message
@@ -26,6 +30,9 @@
           .links
             = link_to_add_association  image_tag('/assets/add.gif'), f, :location_photos,:partial => 'locations/location_photos_fields'
         
+      %br
+      = f.check_box :terms_of_service
+      %a{:href => "/terms-and-conditions",:target=>"_blank"} Accept terms & conditions
       %br
       = f.submit 'Add an Ad'
 

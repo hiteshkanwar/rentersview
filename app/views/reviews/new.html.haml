@@ -2,6 +2,10 @@
 
 = form_for([@location, @review], :html => {:multipart => true}) do |f|
   %div.centered
+    - if !@review.errors[:terms_of_service].blank?
+      %div.centered{:style => "width:973px;color:red;padding-bottom:10px;"}
+        Terms & conditions 
+        = @review.errors[:terms_of_service].first
     %div.centered{:style=>"width:973px;"}
       %b Add Photos
       #location_photos
@@ -14,4 +18,11 @@
     %div.centered{:style => "width:973px;"}
       = f.text_area :message, :style => "border:solid 1px #ccc;width:620px;height:120px;"
       %br
+      = f.check_box :terms_of_service
+      %a{:href => "/terms-and-conditions",:target=>"_blank"} Accept terms & conditions
+      %br
       = f.submit 'Add review'
+
+      = f.submit 'Preview', :onclick => "this.form.action='new_preview';"
+    
+

@@ -40,3 +40,5 @@ production:
   username: root
   password:
   socket: /opt/lampp/var/mysql/mysql.sock
+
+  #/var/run/mysqld/mysqld.sock

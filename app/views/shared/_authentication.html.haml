@@ -3,7 +3,7 @@
     = image_tag(current_user.profile_image_url, width: 30)
     %span
       Hi #{current_user.name}
-      = link_to 'Log out', destroy_user_session_path, :method => :delete
+      = link_to 'Log out', destroy_user_session_path, :method => :delete,:style=>"text-shadow: 1px 1px 1px #404040;"
 - else
   %div.authentication.not-logued
     %a.btn.icon-face{:href => user_omniauth_authorize_path(:facebook)}

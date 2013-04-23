@@ -5,9 +5,9 @@
   %br
   %br
   %p.buttons{:style => "margin-left:20px;width:500px;line-height:28px;"}
-    = link_to 'Add Review', new_location_path(address: params[:query]), :class => 'add-review-btn'
+    = link_to 'Add Review', new_location_path(address: params[:query]), :class => 'add-review-btn',:style=>"text-shadow: 1px 1px 0px #404040;"
     or
-    = link_to 'Create Free Ad', new_location_path(address: params[:query], type: 'ad'), :class => 'add-review-btn'
+    = link_to 'Create Free Ad', new_location_path(address: params[:query], type: 'ad'), :class => 'add-review-btn',:style=>"text-shadow: 1px 1px 0px #404040;"
     == for 
     %span{:style => "text-transform:capitalize;font-weight:bold;"}
       == #{params[:query]}?

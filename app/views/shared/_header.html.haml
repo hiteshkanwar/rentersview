@@ -6,7 +6,7 @@
     color:#3B0B17;
     font-weight:bold
   }
-  section.search form input[type=submit] {
+  .edit_review input[type="submit"], #new_review input[type="submit"], section.search form input[type=submit], .ad_form_rv input[type=submit], #new_message input[type=submit],#new_message input[type="submit"], #new_location input[type="submit"], .agent_review input[type="submit"] {
     color:#fff;
     text-shadow: 1px 1px 1px #404040;
     -moz-border-radius:14px;
@@ -29,9 +29,10 @@
     */
     cursor:pointer;
     display: inline-block;
-    vertical-align:bottom
+    vertical-align:bottom;
+    box-shadow:none;
   }
-  section.search form input[type=submit]:hover {
+  .edit_review input[type="submit"]:hover, #new_review input[type="submit"]:hover, section.search form input[type=submit]:hover,.ad_form_rv input[type=submit]:hover, #new_message input[type=submit]:hover,#new_message input[type="submit"]:hover, #new_location input[type="submit"]:hover {
     background: #FFCF3D;
     color:#fff;
   }
@@ -107,47 +108,43 @@
     border-radius:8px;
     -moz-border-radius:8px;
     -webkit-border-radius:8px;
-    margin-left:10px
+    margin-left:10px;
+    text-shadow: 1px 1px 0px #404040;
   }
-  .ad_form_rv input[type=submit],#new_message input[type=submit] {
+
+  a.preview-submit-btn, a.preview-cancel-btn {
     color:#fff;
     text-shadow: 1px 1px 1px #404040;
     -moz-border-radius:14px;
     -webkit-border-radius:14px;
     border-radius:14px;
-    height:37px;
-    border: 1px solid #49b0db;
+    height:25px;
+    border: 1px solid #f2c43a;
     font-size:14px;
     font-weight:bold;
-    background: #3eaddc; /* Old browsers */
-    background: -moz-linear-gradient(top, #3eaddc 0%, #4dc6f9 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3eaddc), color-stop(100%, #4dc6f9)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #3eaddc 0%, #4dc6f9 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #3eaddc 0%, #4dc6f9 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #3eaddc 0%, #4dc6f9 100%); /* IE10+ */
-    background: linear-gradient(to bottom, #3eaddc 0%, #4dc6f9 100%); /* W3C */
-    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3eaddc', endColorstr='#4dc6f9', GradientType=0 ); /* IE6-9 */
+    background: #FFCF3D;
+    background: -moz-linear-gradient(top, #FFD557 0%, #FFCF3D 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFD557), color-stop(100%, #FFCF3D));
+    background: -webkit-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); 
+    background: -ms-linear-gradient(top, #FFD557 0%, #FFCF3D 100%); 
+    background: linear-gradient(to bottom, #FFD557 0%, #FFCF3D 100%); 
+    /*
     -moz-box-shadow: inset 0 0 3px #c1edff;
     -webkit-box-shadow: inset 0 0 3px #c1edff;
     box-shadow: inset 0 0 3px #c1edff;
+    */
     cursor:pointer;
     display: inline-block;
     vertical-align:bottom;
-    margin-top:10px;
-    padding:0 13px;
+    box-shadow:none;
+    width: 65px;
+    text-align: center;
+    padding-top: 10px;
   }
-  .ad_form_rv input[type=submit]:hover, #new_message input[type=submit]:hover {
-    background: #3eaddc; /* Old browsers */
-    background: -moz-linear-gradient(top, #3eaddc 0%, #0095f2 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3eaddc), color-stop(100%, #0095f2)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #3eaddc 0%, #0095f2 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #3eaddc 0%, #0095f2 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #3eaddc 0%, #0095f2 100%); /* IE10+ */
-    background: linear-gradient(to bottom, #3eaddc 0%, #0095f2 100%); /* W3C */
-    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3eaddc', endColorstr='#0095f2', GradientType=0 ); /* IE6-9 */
-    color:#eee;
+  a.preview-submit-btn:hover, a.preview-cancel-btn:hover {
+    background: #FFCF3D;
+    text-decoration:none;
   }
-
 %header
   %div.centered
     %h1#headerLogo

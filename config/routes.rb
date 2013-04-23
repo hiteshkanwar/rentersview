@@ -7,7 +7,10 @@ RentersView::Application.routes.draw do
   root :to => "home#index"
 
   resources :locations, only: [:new, :create, :show] do
-    resources :reviews, only: [:index, :new, :create,:edit,:update]
+    resources :reviews, only: [:index, :new, :create,:edit,:update,:destroy] do
+    post :new_preview, :on => :collection
+    get :delete_review,:on => :collection
+  end
     resources :ads, only: [:index, :new, :create,:edit,:update]
   end
 
@@ -31,6 +34,6 @@ RentersView::Application.routes.draw do
   match "privacy" => "pages#privacy"
   match "help" => "pages#help"
   match "contact-us" => "pages#contact_us"
-
+ # match "/locations/:location_id/reviews/new_preview"=>"reviews/new_preview"
   get "users/:id/reviews" => "users#reviews"
 end

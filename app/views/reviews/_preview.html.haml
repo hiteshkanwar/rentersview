@@ -1,0 +1,30 @@
+%div.gallery
+  - if !@review.location_photos.blank?
+    - @review.location_photos.each do |review|
+      %img{:src => "#{review.photo.url(:thumb)}"}
+%section.add-sec
+  %ul.add-list
+    - if !@review.user.blank?
+      %li
+        %article.add{:style=>"max-width: 100%;"}
+          %div.profile
+            - if !@review.user.profile_image_url.blank?
+              - if @review.user.authorizations.first.provider == 'twitter' && !@review.user.authorizations.first.username.nil?
+                %a{:href => "http://twitter.com/#{@review.user.authorizations.first.username}",:target=>'_blank'}
+                  %img{:src => "#{@review.user.profile_image_url}",:style => "width:40px;"}
+              - elsif @review.user.authorizations.first.provider == 'facebook' && !@review.user.authorizations.first.username.nil?
+                %a{:href => "http://www.facebook.com/#{@review.user.authorizations.first.username}",:target=>'_blank'}
+                  %img{:src => "#{@review.user.profile_image_url}",:style => "width:40px;"}
+              - else
+                %img{:src => "#{@review.user.profile_image_url}",:style => "width:40px;"}
+            %span.name
+              = @review.user.first_name.to_s + " " + @review.user.last_name.to_s
+            %span{:style=>"float:right;"}
+              %span{:style=>"font-weight:bold;margin-left:5px;"}
+                Last Updated:
+              = @review.try(:updated_at).strftime('%Y-%m-%d %H:%M') 
+            %p.message
+              = @review.message
+
+= link_to 'Cancel', delete_review_location_reviews_path(:location_id=>@review.location,:id=>@review),:onClick=>"window.parent.fancybox.close();",:class=>"preview-cancel-btn"
+= link_to 'Submit', location_reviews_path(@location) ,:onClick=>"window.parent.fancybox.close();",:class=>"preview-submit-btn"

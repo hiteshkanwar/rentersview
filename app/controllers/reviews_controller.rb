@@ -1,7 +1,8 @@
 class ReviewsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create]
-  before_filter :load_location, only: [:index, :new, :create,:edit,:update]
-  before_filter :remove_params,only: [:create]
+  before_filter :load_location, only: [:index, :new, :create,:edit,:update,:new_preview,:delete_review]
+  before_filter :remove_params,only: [:create, :new_preview]
+  respond_to :js,:html
   def index
     @reviews = @location.reviews
     if !current_user.nil?
@@ -38,7 +39,8 @@ class ReviewsController < ApplicationController
   def create
     @review = @location.reviews.new(params[:review])
     @review.user = current_user
-    if @review.save
+
+    if  @review.save
       if !params['location_photos'].blank?
         params['location_photos'].each do |photo|
           LocationPhoto.create(:location_id => @location.id, :photo => photo,:imageable_id=>@review.id,:imageable_type=>'Review')
@@ -50,6 +52,29 @@ class ReviewsController < ApplicationController
     end
   end
 
+
+  def new_preview
+    @review = @location.reviews.new(params[:review])
+    @review.user = current_user
+    if @review.save
+      if !params['location_photos'].blank?
+          params['location_photos'].each do |photo|
+            LocationPhoto.create(:location_id => @location.id, :photo => photo,:imageable_id=>@review.id,:imageable_type=>'Review')       end
+      end
+    else
+      render :new
+    end
+  end
+
+  def delete_review
+     @review = Review.find(params[:id])
+     @review.location_photos.each do |photo|  
+        photo.destroy
+     end
+     @review.destroy
+     redirect_to new_location_review_path(@location)
+    
+  end
   # mobile API
   def doReview
     if user = User.where("uid = ?", params[:facebookId]).first
