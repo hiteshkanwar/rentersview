@@ -6,7 +6,7 @@ gem 'rails', '3.2.8'
 gem 'mysql2'
 gem 'sunspot_rails'
 gem 'sunspot_solr', :group => :development
-
+gem 'aws-s3'
 # CSS + HTML + JS
 gem 'cocoon'
 gem 'haml'
