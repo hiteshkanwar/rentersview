@@ -10,12 +10,10 @@ class LocationPhoto < ActiveRecord::Base
                       :medium => "300x248>",
                       :thumb => "90x78>"
                     },
-                    :storage => :s3,
-                    :s3_credentials => {
-                      :bucket => 'rentersviewnew',
-                      :access_key_id => "AKIAJQQNROVXNSD4CVVQ",
-                      :secret_access_key => "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"
-                    }
+                       :storage => :s3,
+                       :s3_credentials => "#{Rails.root}/config/s3.yml",
+                        :path => "/:style/:id/:filename"
+                    
                     #:path => "/:style/:id/:filename"
 
   validates_attachment_presence :photo
