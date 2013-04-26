@@ -61,6 +61,16 @@ RentersView::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+    config.paperclip_defaults = {
+                                  :storage => :s3,
+                                  :s3_protocol => 'http',
+                                  :s3_credentials => {
+                                    :bucket => "rentersviewnew",
+                                    :access_key_id => "AKIAJQQNROVXNSD4CVVQ",
+                                    :secret_access_key => "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"
+                                  }
+                                }
+
   config.action_mailer.default_url_options = {:host => 'rentersview.com'}
   config.action_mailer.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
