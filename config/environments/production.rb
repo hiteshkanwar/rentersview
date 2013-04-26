@@ -63,9 +63,8 @@ RentersView::Application.configure do
 
     config.paperclip_defaults = {
                                   :storage => :s3,
-                                  :s3_protocol => 'http',
                                   :s3_credentials => {
-                                    :bucket => "rentersviewnew",
+                                    :bucket => "rentersview",
                                     :access_key_id => "AKIAJQQNROVXNSD4CVVQ",
                                     :secret_access_key => "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"
                                   }
