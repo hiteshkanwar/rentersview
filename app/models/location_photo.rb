@@ -15,7 +15,7 @@ class LocationPhoto < ActiveRecord::Base
                       :bucket => 'rentersviewnew',
                       :access_key_id => "AKIAJQQNROVXNSD4CVVQ",
                       :secret_access_key => "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"
-                    },
+                    }
                     #:path => "/:style/:id/:filename"
 
   validates_attachment_presence :photo
