@@ -16,8 +16,8 @@ class LocationPhoto < ActiveRecord::Base
                       :access_key_id => "AKIAJQQNROVXNSD4CVVQ",
                       :secret_access_key => "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"
                     },
-                    :path => "/:style/:id/:filename"
-                    
+                    #:path => "/:style/:id/:filename"
+
   validates_attachment_presence :photo
   validates_attachment_size :photo, :less_than => 5.megabytes
 
