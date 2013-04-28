@@ -14,6 +14,7 @@ class LocationPhoto < ActiveRecord::Base
                        :s3_credentials => "#{Rails.root}/config/s3.yml",
                         :s3_protocol => "https",
                         :path => ":class/:id/:basename_:style.:extension",
+                        :s3_host_name => 's3-us-east-1.amazonaws.com',
                         :bucket => "rentersview"
                     #:path => "/:style/:id/:filename"
 
