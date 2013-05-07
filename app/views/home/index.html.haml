@@ -8,7 +8,7 @@
             %article.mod-review
               %figure
                 - if !location.location_photos[0].blank?
-                  %img{:src => "#{location.location_photos[0].photo.url}", :alt =>"#{location.address1}"}
+                  %img{:src => "#{location.location_photos[0].photo.url}", :alt =>"#{location.address1}",:height=>"248", :width=>"300"}
                 - else
                   %img{:src => "http://maps.google.com/maps/api/staticmap?center=#{location.latitude},#{location.longitude}&markers=color:red|#{location.latitude},#{location.longitude}&zoom=12&size=300x248&sensor=false&key=AIzaSyDBErX3M80EQqJ0JSWjRdYINF6WuGXUQo0&maptype=roadmap", :width => "300", :height => "248"}
                 %figcaption
