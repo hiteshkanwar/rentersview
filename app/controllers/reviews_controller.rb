@@ -5,6 +5,7 @@ class ReviewsController < ApplicationController
   respond_to :js,:html
   def index
     @reviews = @location.reviews
+    @ads = @location.ads
     if !current_user.nil?
       @my_reviews = current_user.reviews
     end
@@ -39,7 +40,6 @@ class ReviewsController < ApplicationController
   def create
     @review = @location.reviews.new(params[:review])
     @review.user = current_user
-
     if  @review.save
       if !params['location_photos'].blank?
         params['location_photos'].each do |photo|

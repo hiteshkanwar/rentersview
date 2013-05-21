@@ -1,18 +1,21 @@
 %h2 Add a review
-
+- if $a.nil?
+  - $id = params[:location_id].to_i
+  - $a = 1
 = form_for([@location, @review], :html => {:multipart => true}) do |f|
   %div.centered
     - if !@review.errors[:terms_of_service].blank?
       %div.centered{:style => "width:973px;color:red;padding-bottom:10px;"}
         Terms & conditions 
         = @review.errors[:terms_of_service].first
+        
     %div.centered{:style=>"width:973px;"}
-      %b Add Photos
+      %b Add Photos             
       #location_photos
-        = f.fields_for :location_photos, @location do |photo|
+        = f.fields_for :location_photos, @location do |photo|                          
           = render 'locations/location_photos_fields', :f => photo
-          .links
-          = link_to_add_association image_tag('/assets/add.gif'), f, :location_photos,:partial => 'locations/location_photos_fields'
+          .links          
+          = link_to_add_association "Add More", f, :location_photos,:partial => 'locations/location_photos_fields',:data=>{"association-insertion-method"=>"after"},:id=>'location_photos'
         
       %br
     %div.centered{:style => "width:973px;"}
@@ -24,5 +27,5 @@
       = f.submit 'Add review'
 
       = f.submit 'Preview', :onclick => "this.form.action='new_preview';"
-    
+
 

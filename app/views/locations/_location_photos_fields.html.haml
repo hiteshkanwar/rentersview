@@ -1,5 +1,37 @@
 
-.nested-fields
-  .field
-    %input#location_photos{:type => "file", :class => "upload_photos", :name => "location_photos[]"}
-    = link_to_remove_association image_tag('/assets/remove.png'), f
+
+#location_photos
+  .nested-fields 
+    .field 
+      - if !$id.nil?
+        - $id += 1
+        %img{:alt => "", :src => "#", :id => "img_prev_#{$id}" }/
+      - else
+        - $id = 0        
+      %input{:type => "file", :class => "upload_photos", :name => "location_photos[]",:onchange => "readURL(this);"}
+      = link_to_remove_association 'remove', f
+
+
+%script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"}
+
+:javascript
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      
+      reader.onload = function (e) {
+        $('#img_prev_'+"#{$id}")
+        .attr('src', e.target.result)
+        .width(150)
+        .height(100);
+      };
+      
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+
+
+    
+ 
+  

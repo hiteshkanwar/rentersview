@@ -1,3 +1,4 @@
+
 %div.left-bar
   %div#mapBox{:style => "display:none;"}
     %div#reviewMap{:style => "width:800px;height:500px;"}
@@ -65,10 +66,13 @@
         = @location.city + ", " + @location.country
   
     %div.gallery
-      - if !@location.location_photos.blank?
-        - @location.location_photos.each do |photo|
-          %a{:href => "#{photo.photo.url(:large)}", :rel => 'gallery', :title => "#{@location.address1}", :class => "fancybox"}
-            %img{:src => "#{photo.photo.url(:thumb)}"}   
+      - @ads.each do |ad|
+        - if !ad.location_photos.blank?
+          - ad.location_photos.each_with_index do |photo,index|          
+            %a{:href => "#{photo.photo.url(:large)}", :rel => 'gallery', :title => "#{@location.address1}", :class => "fancybox"}
+              %img{:src => "#{photo.photo.url(:thumb)}"}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 
     - if !@location.blank?
       %section.add-sec
         - if !@reviews.blank?
@@ -88,6 +92,19 @@
                             %img{:src => "#{review.user.profile_image_url}",:style => "width:40px;"}
                         - else
                           %img{:src => "#{review.user.profile_image_url}",:style => "width:40px;"}
+                      %span
+                        - if !@location.location_photos.blank?
+                          - review.location_photos.each_with_index do |photo,index|
+                            %a{:href => "#{photo.photo.url(:large)}", :rel => 'gallery', :title => "#{@location.address1}", :class => "fancybox"}
+                              - if index < 6
+                                %img{:src => "#{photo.photo.url(:thumb)}"}
+                        %br/
+                        %br/
+                        %br/
+                        %br/
+                        %br/
+                        %br/
+
                       %span.name
                         = review.user.first_name.to_s + " " + review.user.last_name.to_s
                       %span{:style=>"float:right;"}
@@ -96,8 +113,7 @@
                             = link_to "Edit Review",edit_location_review_path(review.location,review)
                         %span{:style=>"font-weight:bold;margin-left:5px;"}
                           Last Updated:
-                        = review.try(:updated_at).strftime('%Y-%m-%d %H:%M') 
-
+                        = review.try(:updated_at).strftime('%Y-%m-%d %H:%M')                         
                       %p.message
                         = review.message
                       %br

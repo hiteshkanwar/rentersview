@@ -18,6 +18,5 @@ class UsersController < ApplicationController
   def reviews
     @user = User.find(params[:id])
     @reviews = @user.reviews
-    debugger
   end
 end
