@@ -17,9 +17,13 @@
           .links          
           = link_to_add_association "Add More", f, :location_photos,:partial => 'locations/location_photos_fields',:data=>{"association-insertion-method"=>"after"},:id=>'location_photos'
         
-      %br
-    %div.centered{:style => "width:973px;"}
+      %br/
+    
       = f.text_area :message, :style => "border:solid 1px #ccc;width:620px;height:120px;"
+      %br/
+      %h2{:style=>"color:#6E6E6E;"} Agent review
+      %div.agent_review
+        = f.text_area :agent_review, :size => "50x5"
       %br
       = f.check_box :terms_of_service
       %a{:href => "/terms-and-conditions",:target=>"_blank"} Accept terms & conditions
@@ -27,5 +31,3 @@
       = f.submit 'Add review'
 
       = f.submit 'Preview', :onclick => "this.form.action='new_preview';"
-
-

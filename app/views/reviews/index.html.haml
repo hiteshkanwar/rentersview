@@ -117,12 +117,7 @@
                       %p.message
                         = review.message
                       %br
-          %h2{:style=>"color:#6E6E6E;"} Agent review
-          %div.agent_review{:style=>"padding-left:82px;padding-top:10px;"}
-            = form_tag  do 
-              = text_area_tag 'agent_review', nil, :size => "50x5"
-              %br
-              = submit_tag "Submit", :class=>"agent-review-submit", :style=>""
+          
 
 
   %div.rev-shadow-large

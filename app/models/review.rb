@@ -1,5 +1,5 @@
 class Review < ActiveRecord::Base
-  attr_accessible :user_id, :location_id, :message,:location_photos,:terms_of_service
+  attr_accessible :user_id, :location_id, :message,:location_photos,:terms_of_service,:agent_review
 
   belongs_to :user
   belongs_to :location
