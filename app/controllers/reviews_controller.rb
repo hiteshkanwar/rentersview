@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   before_filter :remove_params,only: [:create, :new_preview]
   respond_to :js,:html
   def index
-    @reviews = @location.reviews
+    @reviews = @location.reviews.order('created_at DESC')
     @ads = @location.ads
     if !current_user.nil?
       @my_reviews = current_user.reviews
